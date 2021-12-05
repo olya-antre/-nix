@@ -5,7 +5,7 @@ opt_sep=
 num_files=
 opt_h=
 opt_s=
-minsize=
+minsize='false'
 
 # ввод параметров и опций
 for arg in "$@"
@@ -31,9 +31,18 @@ do
 		            dir_name="$arg"
 	            else
 	                echo "Error: invalid option "$arg"">&2
+	                exit 2
 	            fi;;
 	esac 
 done 
+
+
+# проверка наличия ошибок в вызове сценария
+if [[ "$opt_s" == 1 &&  "$minsize" == 'false' ]]
+then
+	echo "Error: minsize for option [-s] is not found.">&2
+	exit 2
+fi
 
 
 if [[ "$opt_s" && "$num_files" && "$opt_h" ]]
@@ -65,10 +74,3 @@ then
 	find "$dir_name" -type f -print0 | xargs -0 du | sort -nr | head -"$num_files" 
 fi
 
-
-# проверка наличия ошибок в вызове сценария
-if [[ "$sep_s" && -z "$minsize" ]]
-then
-	echo "Error: minsize for option [-s] is not found.">&2
-	exit 2
-fi
