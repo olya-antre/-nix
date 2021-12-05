@@ -1,13 +1,13 @@
 #!/bin/bash
 
-#
+#инициализация используемых переменных
 user_name="$USER"
 file_name=passwd
 opt_f=
 opt_sep=
 
 
-#
+#ввод опций
 for arg in "$@"
 do
 	if [[ -z "$opt_sep" && "${arg:0:1}" == "-" ]]
@@ -22,7 +22,7 @@ do
 			;;
 		--) opt_sep=1
 			;;
-		-*) echo "Invalid option: "$arg" ">&2
+		-*) echo "Error: invalid option "$arg" ">&2
 			exit 2
 			;;
 		esac
@@ -30,7 +30,7 @@ do
 done
 
 
-#
+#ввод параметров
 opt_sep=
 for arg in "$@"
 do
@@ -43,7 +43,7 @@ do
 		then
 			file_name=$arg
 		else
-			echo "Invalid option: "$arg" ">&2
+			echo "Error: invalid option "$arg" ">&2
 			exit 2
 		fi
 	fi
@@ -56,7 +56,7 @@ then
 		user_path=$(grep "$user_name" /etc/passwd | cut -f6 -d":")
 		echo "$user_path"
 	else
-		echo "User with this name was not found.">&2
+		echo "Error: user with this name was not found.">&2
 		exit 1
 	fi
 elif [ -e "$file_name" ]
@@ -66,11 +66,11 @@ then
 		user_path=$(grep "$user_name" "$file_name" | cut -f6 -d":")
 		echo "$user_path"
 	else
-		echo "User with this name wasn't found.">&2
+		echo "Error: ser with this name wasn't found.">&2
 		exit 1
 	fi
 else
-	echo 'File with this name was not found.'>&2
+	echo 'Error: file with this name was not found.'>&2
 	exit 2
 fi
 
