@@ -1,0 +1,2 @@
+olya:x:1000:1000:Olya,,,:home/olya:/bin/blya
+root:x:0:0:root:/roots/bin/bash
