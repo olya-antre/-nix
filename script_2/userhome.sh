@@ -13,7 +13,10 @@ do
 	if [[ -z "$opt_sep" && "${arg:0:1}" == "-" ]]
 	then
 		case $arg in
-		-h) echo "This file found the path to the your file."
+		-h) echo ""$0": Search the home directory of the entered user in the list of users. By default, the current user and /etc/passwd."
+			echo "Usage: $0 [-h] [-f] [--] [login] [file]"
+			echo -e "-h: print this help and exit; \n-f: input file with list of users; \n--: option/non-option separator."
+			exit 0
 			;;
 		-f) opt_f=1
 			;;
