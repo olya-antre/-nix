@@ -62,8 +62,7 @@ do
 	find "$dir" -name "$mask";
 done | sort -u | while read file;
 do
-	a+=("$file")
-	"${a[@]}"
+	a+=("$(basename "$file")")
+	${a[@]}
 done
-
 

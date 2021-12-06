@@ -4,8 +4,6 @@
 opt_v=
 opt_d=
 opt_sep=
-suffix=
-declare -a file_names
 
 
 # перебор опций и параметров
@@ -31,7 +29,7 @@ done
 # перебор суффикса и названий файлов
 opt_sep=
 sfx=
-file_names=
+declare -a file_names
 k=0
 
 for arg in "$@"
