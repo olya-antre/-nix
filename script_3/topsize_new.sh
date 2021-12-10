@@ -58,4 +58,7 @@ then
 elif [[ "$num_files" ]]
 then
 	find "$dir_name" -type f -size +"$minsize" -print0 | xargs -0 du -b | head -"$num_files" 
+else
+	find "$dir_name" -type f -size +"$minsize" -print0 | xargs -0 du -b | sort -hr
+
 fi
