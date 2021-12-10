@@ -53,7 +53,7 @@ if [ "$file_name" = passwd ]
 then
 	if getent passwd "$user_name" >/dev/null;
 	then
-		user_path=$(grep "$user_name" /etc/passwd | cut -f6 -d":")
+		user_path=$(grep "^$user_name:" /etc/passwd | cut -f6 -d":")
 		echo "$user_path"
 	else
 		echo "Error: user with this name was not found.">&2
@@ -61,9 +61,9 @@ then
 	fi
 elif [ -e "$file_name" ]
 then
-	if grep "$user_name" "$file_name" >/dev/null;
+	if grep "^$user_name:" "$file_name" >/dev/null;
 	then
-		user_path=$(grep "$user_name" "$file_name" | cut -f6 -d":")
+		user_path=$(grep "^$user_name:" "$file_name" | cut -f6 -d":")
 		echo "$user_path"
 	else
 		echo "Error: ser with this name wasn't found.">&2
